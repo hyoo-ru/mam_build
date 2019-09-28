@@ -1,0 +1,13 @@
+name: 'Build MAM'
+description: 'GitHub Action to build MAM based project'
+author: 'Nin Jin <nin-jin@ya.ru>'
+inputs:
+  module:
+    description: 'path to this module in global MAM scope'
+    required: true
+runs:
+  using: 'node12'
+  main: '_build.js'
+branding:
+  icon: 'anchor'
+  color: 'blue'
