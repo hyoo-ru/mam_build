@@ -7,7 +7,7 @@ const fs = require( 'fs' )
 const mod = core.getInput('module', {required: true});
 console.log( 'mod' , mod )
 
-const pack = core.getInput('package', {required: true});
+const pack = core.getInput('package', {required: false}) || mod;
 console.log( 'pack' , pack )
 
 const repo = process.cwd()
