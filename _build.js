@@ -25,7 +25,7 @@ function exec( dir , command , ...args ) {
 		let [ app , ... args0 ] = command.split( ' ' )
 		args = [ ... args0 , ... args ]
 
-		console.info( `${ path.relative( '' , dir ) }> ${app} ${ args.join( ' ' ) }` )
+		console.info( `${ dir }> ${app} ${ args.join( ' ' ) }` )
 
 		var res = child.spawnSync(
 			app ,
