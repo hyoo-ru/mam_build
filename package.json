@@ -1,0 +1,26 @@
+{
+  "name": "mam_build",
+  "version": "1.0.0",
+  "description": "GitHub Action to build MAM based project",
+  "private": true,
+  "main": "_build.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyoo-ru/mam_build.git"
+  },
+  "keywords": [
+    "github-actions",
+    "github-projects",
+    "automation"
+  ],
+  "author": "Nin Jin <nin-jin@ya.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyoo-ru/mam_build/issues"
+  },
+  "homepage": "https://github.com/hyoo-ru/mam_build#readme",
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/github": "^1.1.0"
+  }
+}
