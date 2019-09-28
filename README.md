@@ -1,12 +1,16 @@
 # Build MAM
 
-GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project
+GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project. Built project will replace source code.
 
 ## Inputs
 
 ### `module`
 
-**Required** Path to your module in global MAM scope
+**Required** Path to your module in global MAM scope that you want to build.
+
+### `package`
+
+**Optional** Path to your package in global MAM scope
 
 ## Example usage
 
@@ -14,7 +18,8 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project
   - name: Build app
     uses: hyoo-ru/mam_build@master
     with:
-      module: 'hyoo/notes'
+      module: 'piterjs/app'
+      package: 'piterjs'
 ```
 
 [Full workflow example](https://github.com/hyoo-ru/notes.hyoo.ru/blob/master/.github/workflows/deploy.yml)
