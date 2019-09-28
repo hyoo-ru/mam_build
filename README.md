@@ -17,4 +17,4 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project
       module: 'hyoo/notes'
 ```
 
-[Full workflow example](ps://github.com/hyoo-ru/notes.hyoo.ru/blob/master/.github/workflows/deploy.yml)
+[Full workflow example](https://github.com/hyoo-ru/notes.hyoo.ru/blob/master/.github/workflows/deploy.yml)
