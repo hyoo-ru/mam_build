@@ -36,7 +36,7 @@ function exec( dir , command , ...args ) {
 			}
 		)
 		
-		if( res.status || res.error ) throw ( res.error || new Error( res.stderr.toString() )
+		if( res.status || res.error ) throw ( res.error || new Error( res.stderr.toString() ) )
 		if( !res.stdout ) res.stdout = new Buffer('')
 
 		return res
