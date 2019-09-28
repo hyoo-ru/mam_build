@@ -4,16 +4,21 @@ const path = require( 'path' )
 const child = require( 'child_process' )
 const fs = require( 'fs' )
 
-const module = core.getInput('module', {required: true});
+const mod = core.getInput('module', {required: true});
 const repo = process.cwd()
 const root = path.dirname( repo )
-const target = root + '/' + module
+const mam = root + '/mam'
+const build = mam + '/' + mod
 
-fs.mkdirSync( path.dirname( target ) , { recursive: true } )
-fs.renameSync( repo , target )
-exec( root , 'yarn' )
-exec( root , 'yarn' , 'start' , module )
-fs.renameSync( target + '/-' , repo + '/-' )
+// prepare sources
+exec( root , 'git' , 'clone' , 'https://github.com/eigenmethod/mam.git' )
+fs.mkdirSync( path.dirname( build ) , { recursive: true } )
+fs.renameSync( repo , build )
+
+// build
+exec( mam , 'yarn' )
+exec( mam , 'yarn' , 'start' , mod )
+fs.renameSync( buuild + '/-' , repo + '/-' )
 
 function exec( dir , command , ...args ) {
 
