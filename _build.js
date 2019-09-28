@@ -27,7 +27,12 @@ fs.renameSync( repo , build )
 // build
 exec( mam , 'yarn' )
 exec( mam , 'yarn' , 'start' , mod )
-fs.renameSync( build + '/-' , repo + '/-' )
+
+// return files
+if( fs.existsSync( build + '/CNAME' ) ) {
+	fs.copyFileSync( build + '/CNAME' , build + '/-/CNAME' )
+}
+fs.renameSync( build + '/-' , repo )
 
 function exec( dir , command , ...args ) {
 
