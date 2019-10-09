@@ -38,6 +38,7 @@ exec( mam , 'yarn' , 'start' , mod )
 if( fs.existsSync( build + '/CNAME' ) ) {
 	fs.copyFileSync( build + '/CNAME' , build + '/-/CNAME' )
 }
+fs.writeFileSync( build + '/-/.nojekyll' , '' )
 fs.renameSync( build + '/-' , repo )
 
 function exec( dir , command , ...args ) {
