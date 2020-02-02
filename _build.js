@@ -33,6 +33,7 @@ fs.renameSync( repo , package )
 // build
 exec( mam , 'yarn' , '--ignore-optional' )
 exec( mam , 'yarn' , 'start' , mod )
+exec( mam , 'node' , `${mod}/-/node.test.js` )
 
 // return files
 if( fs.existsSync( build + '/CNAME' ) ) {
