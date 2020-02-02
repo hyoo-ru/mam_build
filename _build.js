@@ -31,7 +31,7 @@ fs.mkdirSync( path.dirname( package ) , { recursive: true } )
 fs.renameSync( repo , package )
 
 // build
-exec( mam , 'yarn' )
+exec( mam , 'yarn' , '--ignore-optional' )
 exec( mam , 'yarn' , 'start' , mod )
 
 // return files
