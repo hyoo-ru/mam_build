@@ -49,7 +49,7 @@ function exec( dir , command , ...args ) {
 
 		console.info( `${ dir }> ${app} ${ args.join( ' ' ) }` )
 
-		child.spawnSync(
+		const res = child.spawnSync(
 			app ,
 			args,
 			{
@@ -58,5 +58,7 @@ function exec( dir , command , ...args ) {
 				shell : true ,
 			}
 		)
-    
+
+		if (res.status || res.error) process.exit(res.status || 1)
+
 }
