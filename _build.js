@@ -49,18 +49,14 @@ function exec( dir , command , ...args ) {
 
 		console.info( `${ dir }> ${app} ${ args.join( ' ' ) }` )
 
-		var res = child.spawnSync(
+		child.spawnSync(
 			app ,
 			args,
 			{
 				cwd : path.resolve( dir ) ,
+				stdio: 'inherit',
 				shell : true ,
 			}
 		)
-		
-		if( res.status || res.error ) throw ( res.error || new Error( res.stderr.toString() ) )
-		if( !res.stdout ) res.stdout = new Buffer('')
-
-		return res
     
 }
