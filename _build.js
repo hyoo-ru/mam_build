@@ -8,7 +8,7 @@ const fs = require( 'fs' )
 const root = process.cwd()
 console.log( 'root' , root )
 
-const modules = core.getInput('modules', {required: true});
+const modules = core.getInput('modules', {required: true}).split(' ');
 console.log( 'modules' , modules )
 
 const package = core.getInput('package', {required: false});
