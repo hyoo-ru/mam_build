@@ -11,6 +11,21 @@ console.log( 'root' , root )
 const mod = core.getInput('module', {required: true});
 console.log( 'module' , mod )
 
+const pack = core.getInput('package', {required: false});
+console.log( 'package' , mod )
+
+const repo = process.env.GITHUB_REPOSITORY
+console.log( 'repo' , repo )
+
+const branch = process.env.GITHUB_REF
+console.log( 'branch' , branch )
+
+mam:
+exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/eigenmethod/mam.git' , '.' )
+
+pack:
+exec( root , 'git' , 'clone' , '--branch' , branch , `https://github.com/${repo}.git` , pack )
+
 deps:
 exec( root , 'yarn' , '--ignore-optional' )
 
