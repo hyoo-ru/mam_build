@@ -24,7 +24,8 @@ mam:
 exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/eigenmethod/mam.git' , '.' )
 
 pack:
-exec( root , 'git' , 'clone' , '--branch' , ref , `https://github.com/${repo}.git` , pack )
+exec( root , 'git' , 'clone' , '--no-checkout' , `https://github.com/${repo}.git` , pack )
+exec( `${root}/${pack}` , 'git' , 'checkout' , ref )
 
 deps:
 exec( root , 'yarn' , '--ignore-optional' )
