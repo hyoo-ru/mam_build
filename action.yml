@@ -2,11 +2,11 @@ name: 'Build MAM'
 description: 'GitHub Action to build MAM based project'
 author: 'Nin Jin <nin-jin@ya.ru>'
 inputs:
-  modules:
-    description: 'Paths to your modules (apps) in global MAM scope that you want to build'
-    required: true
   package:
     description: 'Path to your package (repo) in global MAM scope'
+    required: true
+  modules:
+    description: 'Paths to your modules (apps) in package scope that you want to build'
     required: false
 runs:
   using: 'node12'

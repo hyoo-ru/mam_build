@@ -8,10 +8,11 @@ const fs = require( 'fs' )
 const root = process.cwd()
 console.log( 'root' , root )
 
-const package = core.getInput('package', {required: false});
+const package = core.getInput('package', {required: true})
 console.log( 'package' , package )
 
-const modules = core.getInput('modules', {required: true}).map( mod => `${package}/${mod}` ).split(' ');
+let modules = core.getInput('modules', {required: false})
+modules = modules ? modules.split(' ').map( mod => `${package}/${mod}` ) : package
 console.log( 'modules' , modules )
 
 const repository = process.env.GITHUB_REPOSITORY
