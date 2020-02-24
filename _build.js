@@ -17,14 +17,14 @@ console.log( 'package' , mod )
 const repo = process.env.GITHUB_REPOSITORY
 console.log( 'repo' , repo )
 
-const branch = process.env.GITHUB_REF
-console.log( 'branch' , branch )
+const ref = process.env.GITHUB_SHA
+console.log( 'ref' , ref )
 
 mam:
 exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/eigenmethod/mam.git' , '.' )
 
 pack:
-exec( root , 'git' , 'clone' , '--branch' , branch , `https://github.com/${repo}.git` , pack )
+exec( root , 'git' , 'clone' , '--branch' , ref , `https://github.com/${repo}.git` , pack )
 
 deps:
 exec( root , 'yarn' , '--ignore-optional' )
