@@ -8,14 +8,14 @@ const fs = require( 'fs' )
 const root = process.cwd()
 console.log( 'root' , root )
 
-const mod = core.getInput('module', {required: true});
-console.log( 'module' , mod )
+const modules = core.getInput('modules', {required: true});
+console.log( 'modules' , modules )
 
-const pack = core.getInput('package', {required: false});
-console.log( 'package' , mod )
+const package = core.getInput('package', {required: false});
+console.log( 'package' , package )
 
-const repo = process.env.GITHUB_REPOSITORY
-console.log( 'repo' , repo )
+const repository = process.env.GITHUB_REPOSITORY
+console.log( 'repository' , repository )
 
 const ref = process.env.GITHUB_SHA
 console.log( 'ref' , ref )
@@ -24,25 +24,29 @@ mam:
 exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/eigenmethod/mam.git' , '.' )
 
 pack:
-exec( root , 'git' , 'clone' , '--no-checkout' , `https://github.com/${repo}.git` , pack )
-exec( `${root}/${pack}` , 'git' , 'checkout' , ref )
+exec( root , 'git' , 'clone' , '--no-checkout' , `https://github.com/${repository}.git` , package )
+exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 
 deps:
 exec( root , 'yarn' , '--ignore-optional' )
 
 build:
-exec( root , 'yarn' , 'start' , mod )
+exec( root , 'yarn' , 'start' , modules.join( ' ' ) )
 
-test:
-exec( root , 'node' , `${mod}/-/node.test.js` )
+for( const mod of modules ) {
 
-domain:
-if( fs.existsSync( `${root}/${mod}/CNAME` ) ) {
-	fs.copyFileSync( `${root}/${mod}/CNAME` , `${root}/${mod}/-/CNAME` )
+	test:
+	exec( root , 'node' , `${mod}/-/node.test.js` )
+
+	domain:
+	if( fs.existsSync( `${root}/${mod}/CNAME` ) ) {
+		fs.copyFileSync( `${root}/${mod}/CNAME` , `${root}/${mod}/-/CNAME` )
+	}
+
+	jekyll:
+	fs.writeFileSync( `${root}/${mod}/-/.nojekyll` , '' )
+
 }
-
-jekyll:
-fs.writeFileSync( `${root}/${mod}/-/.nojekyll` , '' )
 
 //////////////////////////////////////////
 
