@@ -5,22 +5,28 @@ const fs = require( 'fs' )
 
 //////////////////////////////////////////
 
-const mam = process.cwd()
-console.log( 'root' , repo )
+const root = process.cwd()
+console.log( 'root' , root )
 
 const mod = core.getInput('module', {required: true});
 console.log( 'module' , mod )
 
-// build
-exec( mam , 'yarn' , '--ignore-optional' )
-exec( mam , 'yarn' , 'start' , mod )
-exec( mam , 'node' , `${mod}/-/node.test.js` )
+deps:
+exec( root , 'yarn' , '--ignore-optional' )
 
-// return files
-if( fs.existsSync( `${mam}/${mod}/CNAME` ) ) {
-	fs.copyFileSync( `${mam}/${mod}/CNAME` , `${mam}/${mod}/-/CNAME` )
+build:
+exec( root , 'yarn' , 'start' , mod )
+
+test:
+exec( root , 'node' , `${mod}/-/node.test.js` )
+
+domain:
+if( fs.existsSync( `${root}/${mod}/CNAME` ) ) {
+	fs.copyFileSync( `${root}/${mod}/CNAME` , `${root}/${mod}/-/CNAME` )
 }
-fs.writeFileSync( `${mam}/${mod}/-/.nojekyll` , '' )
+
+jekyll:
+fs.writeFileSync( `${root}/${mod}/-/.nojekyll` , '' )
 
 //////////////////////////////////////////
 
