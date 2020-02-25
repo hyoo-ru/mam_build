@@ -34,7 +34,7 @@ exec( root , 'yarn' , '--ignore-optional' )
 for( const mod of modules ) {
 
 	build:
-	exec( root , 'yarn' , 'start' , module )
+	exec( root , 'yarn' , 'start' , mod )
 
 	test:
 	exec( root , 'node' , `${mod}/-/node.test.js` )
