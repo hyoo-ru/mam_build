@@ -12,7 +12,7 @@ const package = core.getInput('package', {required: true})
 console.log( 'package' , package )
 
 let modules = core.getInput('modules', {required: false})
-modules = modules ? modules.split(' ').map( mod => `${package}/${mod}` ) : package
+modules = modules ? modules.split(' ').map( mod => `${package}/${mod}` ) : [ package ]
 console.log( 'modules' , modules )
 
 const repository = process.env.GITHUB_REPOSITORY
