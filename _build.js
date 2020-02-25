@@ -31,10 +31,10 @@ exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 deps:
 exec( root , 'yarn' , '--ignore-optional' )
 
-for( const mod of modules ) {
+build:
+exec( root , 'yarn' , 'start' , modules.join(' ') )
 
-	build:
-	exec( root , 'yarn' , 'start' , mod )
+for( const mod of modules ) {
 
 	test:
 	exec( root , 'node' , `${mod}/-/node.test.js` )
