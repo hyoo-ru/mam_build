@@ -36,9 +36,6 @@ for( const mod of modules ) {
 	build:
 	exec( root , 'yarn' , 'start' , mod )
 
-	test:
-	exec( root , 'node' , `${mod}/-/node.test.js` )
-
 	domain:
 	if( fs.existsSync( `${root}/${mod}/CNAME` ) ) {
 		fs.copyFileSync( `${root}/${mod}/CNAME` , `${root}/${mod}/-/CNAME` )
