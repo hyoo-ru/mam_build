@@ -4,13 +4,13 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project. 
 
 ## Inputs
 
-### `module`
-
-**Required** Path to your module in global MAM scope that you want to build.
-
 ### `package`
 
-**Optional** Path to your package in global MAM scope
+**Required** Path to your package in global MAM scope.
+
+### `modules`
+
+**Optional** Paths to your modules that you want to build reative to package. By default builds package as module.
 
 ## Example usage
 
@@ -18,8 +18,8 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project. 
     - name: Build app
       uses: hyoo-ru/mam_build@master
       with:
-        module: 'piterjs/app'
         package: 'piterjs'
+        module: 'piterjs/app'
 ```
 
 [Full workflow example](https://github.com/hyoo-ru/piterjs.org/blob/master/.github/workflows/deploy.yml)
