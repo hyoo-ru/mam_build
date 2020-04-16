@@ -5,6 +5,8 @@ const fs = require( 'fs' )
 
 //////////////////////////////////////////
 
+const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
+
 const root = process.cwd()
 console.log( 'root' , root )
 
@@ -18,7 +20,7 @@ console.log( 'modules' , modules )
 const repository = process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
 
-const ref = process.env.GITHUB_HEAD_REF || process.env.GITHUB_SHA
+const ref = event.pull_request && event.pull_request.head.sha || process.env.GITHUB_SHA
 console.log( 'ref' , ref )
 
 mam:
