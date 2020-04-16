@@ -17,7 +17,7 @@ let modules = core.getInput('modules', {required: false})
 modules = modules ? modules.split(' ').map( mod => `${package}/${mod}` ) : [ package ]
 console.log( 'modules' , modules )
 
-const repository = process.env.GITHUB_REPOSITORY
+const repository = event.pull_request && event.pull_request.head.repo.clone_url || process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
 
 const ref = event.pull_request && event.pull_request.head.sha || process.env.GITHUB_SHA
