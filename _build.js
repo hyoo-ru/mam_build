@@ -18,7 +18,7 @@ console.log( 'modules' , modules )
 const repository = process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
 
-const ref = process.env.GITHUB_SHA
+const ref = process.env.GITHUB_HEAD_REF || process.env.GITHUB_SHA
 console.log( 'ref' , ref )
 
 mam:
