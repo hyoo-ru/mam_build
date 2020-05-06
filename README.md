@@ -16,10 +16,10 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project. 
 
 ```
     - name: Build app
-      uses: hyoo-ru/mam_build@master
+      uses: hyoo-ru/mam_build@master2
       with:
         package: 'piterjs'
         module: 'piterjs/app'
 ```
 
-[Full workflow example](https://github.com/hyoo-ru/piterjs.org/blob/master/.github/workflows/deploy.yml)
+[Full workflow example](https://github.com/hyoo-ru/portal.hyoo.ru/blob/master/.github/workflows/deploy.yml)
