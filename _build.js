@@ -24,7 +24,7 @@ const ref = event.pull_request && event.pull_request.head.sha || process.env.GIT
 console.log( 'ref' , ref )
 
 mam:
-exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/eigenmethod/mam.git' , '.' )
+exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
 
 pack:
 exec( root , 'git' , 'clone' , '--no-checkout' , `https://github.com/${repository}.git` , package )
