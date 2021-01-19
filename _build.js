@@ -7,6 +7,7 @@ const fs = require( 'fs' )
 
 console.log( 'env' , process.env )
 const token = process.env.GITHUB_TOKEN
+console.log( 'token', token)
 
 const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
 console.log( 'event' , event )
