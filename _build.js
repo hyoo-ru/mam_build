@@ -38,6 +38,8 @@ console.log( 'ref' , ref )
 
 console.log( token ? `Refactor started` : `Refactor suppressed because token isn't provided` )
 if( token ) {
+	
+	let messages = []
 
 // refactor prepare
 	let workflow = fs.readFileSync( package + '/.github/workflows/deploy.yml' ).toString()
@@ -45,23 +47,26 @@ if( token ) {
 // update gh pages deploy
 	if( /uses: alex-page\/blazing-fast-gh-pages-deploy@v1\.0\.1/.test( workflow ) ) {
 		workflow = workflow.replace( 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1' , 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0' )
-		console.log( 'blazing-fast-gh-pages-deploy updated to v1.1.0' )
+		messages.push( 'blazing-fast-gh-pages-deploy updated to v1.1.0' )
 	}
 
 // enable manual build
 	if( !/^  workflow_dispatch:$/m.test( workflow ) ) {
 		workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
-		console.log( 'Manual build enabled' )
+		messages.push( 'Manual build enabled' )
 	}
 
 // refactor apply
 	fs.writeFileSync( package + '/.github/workflows/deploy.yml' , workflow )
 
 // refactor store
-	exec( package, 'git', 'config', 'user.name', '"mam_build"')
-	exec( package, 'git', 'config', 'user.email', '"jin@hyoo.ru"')
-	exec( package, 'git', 'commit' , '-a' , '-m' , '"mam_build refactor"' )
-	exec( package, 'git', 'push' )
+	if( messages.length ) {
+		console.log( messages )
+		exec( package, 'git', 'config', 'user.name', '"mam_build"' )
+		exec( package, 'git', 'config', 'user.email', '"jin@hyoo.ru"' )
+		exec( package, 'git', 'commit' , '-a' , '-m' , JSON.stringify( message.join( ', ' ) ) )
+		exec( package, 'git', 'push' )
+	}
 }
 
 // install dependencies
@@ -102,7 +107,7 @@ function exec( dir , command , ...args ) {
 		)
 
 		if (res.status || res.error) {
-			console.error( res.error )
+			if( res.error ) console.error( res.error )
 			process.exit(res.status || 1)
 		}
 
