@@ -46,7 +46,7 @@ console.log( 'ref' , ref )
 	}
 
 // refactor apply
-	fs.writeFileSync( package + '.github/workflows/deploy.yml' , workflow )
+	fs.writeFileSync( package + '/.github/workflows/deploy.yml' , workflow )
 
 // refactor store
 	exec( package , 'git' , 'commit' , '-a' , '-m' , 'mam_build refactor' )
