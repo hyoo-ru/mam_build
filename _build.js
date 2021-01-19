@@ -23,7 +23,7 @@ console.log( 'modules' , modules )
 const repository = event.pull_request && event.pull_request.head.repo.full_name || process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
 
-..const ref = event.pull_request && event.pull_request.head.sha || process.env.GITHUB_SHA
+//const ref = event.pull_request && event.pull_request.head.sha || process.env.GITHUB_SHA
 const ref = event.ref//.replace( 'refs/heads/', '' )
 console.log( 'ref' , ref )
 
