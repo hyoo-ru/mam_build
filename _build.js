@@ -37,7 +37,9 @@ update_gh_pages_deploy:
 	workflow = workflow.replace( 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1' , 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0' )
 
 enable_manual_build:
-	workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
+	if( !/^  workflow_dispatch:$/.test( workflow ) ) {
+		workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
+	}
 
 refactor_apply:
 	fs.writeFileSync( '.github/workflows/deploy.yml' , workflow )
