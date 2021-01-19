@@ -49,7 +49,7 @@ if( token ) {
 	}
 
 // enable manual build
-	if( !/^  workflow_dispatch:$/.test( workflow ) ) {
+	if( !/^  workflow_dispatch:$/m.test( workflow ) ) {
 		workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
 		console.log( 'Manual build enabled' )
 	}
