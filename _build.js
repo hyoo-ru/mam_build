@@ -31,7 +31,7 @@ console.log( 'ref' , ref )
 	exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
 
 // clone package
-	exec( root , 'git' , 'clone' , '--no-checkout' , `https://github.com/${repository}.git` , package )
+	exec( root , 'git' , 'clone' , '--no-checkout' , `git@github.com:${repository}.git` , package )
 	exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 
 // refactor prepare
