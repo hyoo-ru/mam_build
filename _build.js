@@ -5,7 +5,10 @@ const fs = require( 'fs' )
 
 //////////////////////////////////////////
 
+console.log( 'env' , process.env )
+
 const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
+console.log( 'event' , root )
 
 const root = process.cwd()
 console.log( 'root' , root )
