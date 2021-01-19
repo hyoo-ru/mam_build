@@ -52,7 +52,7 @@ console.log( 'ref' , ref )
 	exec( package, 'git', 'config', 'user.name', '"mam_build"')
 	exec( package, 'git', 'config', 'user.email', '"jin@hyoo.ru"')
 	exec( package, 'git', 'commit' , '-a' , '-m' , '"mam_build refactor"' )
-	exec( package, 'git', 'push', 'master:master' )
+	exec( package, 'git', 'push', 'origin', ref )
 
 // install dependencies
 	exec( root , 'yarn' , '--ignore-optional' )
