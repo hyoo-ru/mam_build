@@ -6,11 +6,11 @@ const fs = require( 'fs' )
 //////////////////////////////////////////
 
 console.log( 'env' , process.env )
-const token = process.env.GITHUB_TOKEN
-console.log( 'token', token)
 
 const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
 console.log( 'event' , event )
+
+const token = core.getInput('token', {required: false})
 
 const root = process.cwd()
 console.log( 'root' , root )
@@ -36,15 +36,22 @@ console.log( 'ref' , ref )
 	exec( root , 'git' , 'clone' , '--no-checkout' , `https://${token}:x-oauth-basic@github.com/${repository}.git` , package )
 	exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 
+console.log( token ? `Refactor started` : `Refactor suppressed because token isn't provided` )
+if( token ) {
+
 // refactor prepare
 	let workflow = fs.readFileSync( package + '/.github/workflows/deploy.yml' ).toString()
 
 // update gh pages deploy
-	workflow = workflow.replace( 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1' , 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0' )
+	if( /uses: alex-page\/blazing-fast-gh-pages-deploy@v1\.0\.1/.test( workflow ) ) {
+		workflow = workflow.replace( 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1' , 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0' )
+		console.log( 'blazing-fast-gh-pages-deploy updated to v1.1.0' )
+	}
 
 // enable manual build
 	if( !/^  workflow_dispatch:$/.test( workflow ) ) {
 		workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
+		console.log( 'Manual build enabled' )
 	}
 
 // refactor apply
@@ -55,6 +62,7 @@ console.log( 'ref' , ref )
 	exec( package, 'git', 'config', 'user.email', '"jin@hyoo.ru"')
 	exec( package, 'git', 'commit' , '-a' , '-m' , '"mam_build refactor"' )
 	exec( package, 'git', 'push' )
+}
 
 // install dependencies
 	exec( root , 'yarn' , '--ignore-optional' )
