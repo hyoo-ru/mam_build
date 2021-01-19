@@ -49,8 +49,9 @@ console.log( 'ref' , ref )
 	fs.writeFileSync( package + '/.github/workflows/deploy.yml' , workflow )
 
 // refactor store
-	exec( package , 'git' , 'commit' , '-a' , '-m' , '"mam_build refactor"' )
-	exec( package , 'git' , 'push' )
+	exec( package, 'git', 'config', 'user.name', '"mam_build"')
+	exec( package, 'git', 'commit' , '-a' , '-m' , '"mam_build refactor"' )
+	exec( package, 'git', 'push' )
 
 // install dependencies
 	exec( root , 'yarn' , '--ignore-optional' )
