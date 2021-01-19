@@ -50,6 +50,7 @@ console.log( 'ref' , ref )
 
 // refactor store
 	exec( package, 'git', 'config', 'user.name', '"mam_build"')
+	exec( package, 'git', 'config', 'user.email', '"jin@hyoo.ru"')
 	exec( package, 'git', 'commit' , '-a' , '-m' , '"mam_build refactor"' )
 	exec( package, 'git', 'push' )
 
