@@ -2,6 +2,9 @@ name: 'Build MAM'
 description: 'GitHub Action to build MAM based project'
 author: 'Nin Jin <nin-jin@ya.ru>'
 inputs:
+  token:
+    description: 'Token to repo for automatic refactoring'
+    required: false
   package:
     description: 'Path to your package (repo) in global MAM scope'
     required: true
