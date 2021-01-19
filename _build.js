@@ -91,6 +91,9 @@ function exec( dir , command , ...args ) {
 			}
 		)
 
-		if (res.status || res.error) process.exit(res.status || 1)
+		if (res.status || res.error) {
+			console.error( res.error )
+			process.exit(res.status || 1)
+		}
 
 }
