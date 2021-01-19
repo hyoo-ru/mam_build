@@ -26,7 +26,7 @@ const repository = event.pull_request && event.pull_request.head.repo.full_name 
 console.log( 'repository' , repository )
 
 //const ref = event.pull_request && event.pull_request.head.sha || process.env.GITHUB_SHA
-const ref = event.ref.replace( 'refs/heads/', '' ) || 'master'
+const ref = event.ref && event.ref.replace( 'refs/heads/', '' ) || 'master'
 console.log( 'ref' , ref )
 
 // clone mam
