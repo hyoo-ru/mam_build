@@ -23,32 +23,32 @@ console.log( 'repository' , repository )
 const ref = event.pull_request && event.pull_request.head.sha || process.env.GITHUB_SHA
 console.log( 'ref' , ref )
 
-clone_mam:
+// clone mam
 	exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
 
-clone_package:
+// clone package
 	exec( root , 'git' , 'clone' , '--no-checkout' , `https://github.com/${repository}.git` , package )
 	exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 
-refactor_prepare:
+// refactor prepare
 	let workflow = fs.readFileSync( package + '/.github/workflows/deploy.yml' ).toString()
 
-update_gh_pages_deploy:
+// update gh pages deploy
 	workflow = workflow.replace( 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1' , 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0' )
 
-enable_manual_build:
+// enable manual build
 	if( !/^  workflow_dispatch:$/.test( workflow ) ) {
 		workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
 	}
 
-refactor_apply:
+// refactor apply
 	fs.writeFileSync( '.github/workflows/deploy.yml' , workflow )
 
-refactor_store:
+// refactor store
 	exec( '.' , 'git' , 'commit' , '-a' , '-m' , 'mam_build refactor' )
 	exec( '.' , 'git' , 'push' )
 
-install_dependencies:
+// install dependencies
 	exec( root , 'yarn' , '--ignore-optional' )
 
 for( const mod of modules ) {
