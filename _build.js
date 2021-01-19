@@ -6,6 +6,7 @@ const fs = require( 'fs' )
 //////////////////////////////////////////
 
 console.log( 'env' , process.env )
+const token = process.env.GITHUB_TOKEN
 
 const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
 console.log( 'event' , event )
@@ -31,7 +32,7 @@ console.log( 'ref' , ref )
 	exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
 
 // clone package
-	exec( root , 'git' , 'clone' , '--no-checkout' , `git@github.com:${repository}.git` , package )
+	exec( root , 'git' , 'clone' , '--no-checkout' , `https://${token}:x-oauth-basic@github.com/${repository}.git` , package )
 	exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 
 // refactor prepare
