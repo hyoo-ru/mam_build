@@ -82,6 +82,11 @@ for( const mod of modules ) {
 		fs.copyFileSync( `${root}/${mod}/CNAME` , `${root}/${mod}/-/CNAME` )
 	}
 
+	domain:
+	if( fs.existsSync( `${root}/${mod}/robots.txt` ) ) {
+		fs.copyFileSync( `${root}/${mod}/robots.txt` , `${root}/${mod}/-/robots.txt` )
+	}
+
 	jekyll:
 	fs.writeFileSync( `${root}/${mod}/-/.nojekyll` , '' )
 
