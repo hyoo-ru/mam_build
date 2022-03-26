@@ -22,6 +22,10 @@ let modules = core.getInput('modules', {required: false})
 modules = modules ? modules.split(' ').map( mod => `${package}/${mod}` ) : [ package ]
 console.log( 'modules' , modules )
 
+let meta = core.getInput( 'meta', { required: false } )
+meta = meta ? meta.trim().split('\n').map( str => str.split(' ') ) : []
+console.log('meta', JSON.stringify(meta))
+
 const repository = event.pull_request && event.pull_request.head.repo.full_name || process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
 
@@ -31,6 +35,12 @@ console.log( 'ref' , ref )
 
 // clone mam
 	exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
+
+// clone meta modules
+	for ( const [package, repo] of meta ) {
+		const pathname = new URL(repo).pathname
+		exec( root , 'git' , 'clone' , `https://${token}:x-oauth-basic@github.com${pathname}` , package )
+	}
 
 // clone package
 	exec( root , 'git' , 'clone' , '--no-checkout' , `https://${token}:x-oauth-basic@github.com/${repository}.git` , package )

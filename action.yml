@@ -11,6 +11,9 @@ inputs:
   modules:
     description: 'Paths to your modules (apps) in package scope that you want to build'
     required: false
+  meta:
+    description: 'Paths to dependent module and namespace repositories'
+    required: false
 runs:
   using: 'node12'
   main: '_build.js'
