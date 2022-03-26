@@ -37,9 +37,9 @@ console.log( 'ref' , ref )
 	exec( root , 'git' , 'clone' , '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
 
 // clone meta modules
-	for ( const [path, repo] of meta ) {
-		const url = `https://${token}:x-oauth-basic@github.com${repo.split( 'github.com' )[1]}` 
-		exec( root , 'git' , 'clone' , url , path )
+	for ( const [package, repo] of meta ) {
+		const pathname = new URL(repo).pathname
+		exec( root , 'git' , 'clone' , `https://${token}:x-oauth-basic@github.com${pathname}` , package )
 	}
 
 // clone package
