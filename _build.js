@@ -24,7 +24,7 @@ console.log( 'modules' , modules )
 
 let meta = core.getInput( 'meta', { required: false } )
 meta = meta ? meta.trim().split('\n').map( str => str.split(' ') ) : []
-console.log('meta', JSON.stringify(map))
+console.log('meta', JSON.stringify(meta))
 
 const repository = event.pull_request && event.pull_request.head.repo.full_name || process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
