@@ -37,7 +37,7 @@ Two modules `$piterjs_app` and `$piterjs_intro` will be built.
       with:
         package: 'piterjs/app'
 ```
-The `$piterjs_app` module will be built
+The `$piterjs_app` module will be built.
 
 ```
     - name: Build app
@@ -48,7 +48,7 @@ The `$piterjs_app` module will be built
         meta: |
           my https://github.com/githubuser/mam_my
 ```
-The `$my_counter` module will be built. Before the build, the repository `https://github.com/PavelZubkov/mam_my` will be cloned at the path `mam/my`, which contains `my.meta.tree`. It contains links to modules used by `$my_counter`.
+The `$my_counter` module will be built. Before the build, the repository `https://github.com/githubuser/mam_my` will be cloned at the path `mam/my`, which contains `my.meta.tree`. It contains links to modules used by `$my_counter`.
 
 [Full workflow example](https://github.com/hyoo-ru/portal.hyoo.ru/blob/master/.github/workflows/deploy.yml)
 [Build with publish to NPM](https://github.com/hyoo-ru/mam_mol/blob/master/.github/workflows/mol_wire_lib.yml)
