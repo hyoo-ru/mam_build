@@ -10,7 +10,7 @@ console.log( 'env' , process.env )
 const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
 console.log( 'event' , event )
 
-const token = core.getInput('token', {required: true})
+const token = core.getInput('token', {required: false})
 
 const root = process.cwd()
 console.log( 'root' , root )
@@ -46,6 +46,8 @@ console.log( 'ref' , ref )
 	exec( root , 'git' , 'clone' , '--no-checkout' , `https://${token}:x-oauth-basic@github.com/${repository}.git` , package )
 	exec( `${root}/${package}` , 'git' , 'checkout' , ref )
 
+console.log( token ? `Refactor started` : `Refactor suppressed because token isn't provided` )
+if( token ) {
 	let messages = []
 
 // refactor prepare
@@ -74,6 +76,7 @@ console.log( 'ref' , ref )
 		exec( package, 'git', 'commit' , '-a' , '-m' , JSON.stringify( messages.join( ', ' ) ) )
 		exec( package, 'git', 'push' )
 	}
+}
 
 // install dependencies
 	exec( root , 'yarn' , '--ignore-optional' )
