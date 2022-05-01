@@ -48,7 +48,18 @@ console.log( 'ref' , ref )
 
 console.log( token ? `Refactor started` : `Refactor suppressed because token isn't provided` )
 if( token ) {
+	
 	let messages = []
+
+// default files
+	if( !fs.existsSync( package + '/.gitattributes' ) ) {
+		fs.writeFileSync( package + '/.gitattributes', '*\t-text\n' )
+		messages.push( 'Added default .gitattributes' )
+	}
+	if( !fs.existsSync( package + '/.gitignore' ) ) {
+		fs.writeFileSync( package + '/.gitignore', '-*\n.DS_Store\n' )
+		messages.push( 'Added default .gitignore' )
+	}
 
 // refactor prepare
 	let workflow = fs.readFileSync( package + '/.github/workflows/deploy.yml' ).toString()
@@ -76,6 +87,7 @@ if( token ) {
 		exec( package, 'git', 'commit' , '-a' , '-m' , JSON.stringify( messages.join( ', ' ) ) )
 		exec( package, 'git', 'push' )
 	}
+	
 }
 
 // install dependencies
