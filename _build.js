@@ -84,6 +84,8 @@ if( token ) {
 		console.log( messages )
 		exec( package, 'git', 'config', 'user.name', '"mam_build"' )
 		exec( package, 'git', 'config', 'user.email', '"jin@hyoo.ru"' )
+		exec( package, 'git', 'add' , '.gitattributes' )
+		exec( package, 'git', 'add' , '.gitignore' )
 		exec( package, 'git', 'commit' , '-a' , '-m' , JSON.stringify( messages.join( ', ' ) ) )
 		exec( package, 'git', 'push' )
 	}
