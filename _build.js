@@ -62,24 +62,6 @@ if( token ) {
 		messages.push( 'Added default .gitignore' )
 	}
 
-// refactor prepare
-	let workflow = fs.readFileSync( package + '/.github/workflows/deploy.yml' ).toString()
-
-// update gh pages deploy
-	if( /uses: alex-page\/blazing-fast-gh-pages-deploy@v1\.0\.1/.test( workflow ) ) {
-		workflow = workflow.replace( 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1' , 'uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0' )
-		messages.push( 'blazing-fast-gh-pages-deploy updated to v1.1.0' )
-	}
-
-// enable manual build
-	if( !/^  workflow_dispatch:$/m.test( workflow ) ) {
-		workflow = workflow.replace( /^on:\n/m , 'on:\n  workflow_dispatch:\n' )
-		messages.push( 'Manual build enabled' )
-	}
-
-// refactor apply
-	fs.writeFileSync( package + '/.github/workflows/deploy.yml' , workflow )
-
 // refactor store
 	if( messages.length ) {
 		console.log( messages )
