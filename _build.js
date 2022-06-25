@@ -53,7 +53,7 @@ if( token ) {
 	let messages = []
 
 // use account FUNDING
-	if( fs.existsSync( package + '/.github/FUNDING.yml' ) {
+	if( fs.existsSync( package + '/.github/FUNDING.yml' ) ) {
 		fs.unlinkSync( package + '/.github/FUNDING.yml' )
 		messages.push( 'Removed FUNDING.yml to use account funding.' )
 	}
