@@ -1,6 +1,6 @@
 # Build MAM
 
-GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project. Built project will replace source code.
+GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project.
 
 ## Inputs
 
