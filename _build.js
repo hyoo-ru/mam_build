@@ -144,6 +144,7 @@ function exec( dir , command , ...args ) {
 				cwd : path.resolve( dir ) ,
 				stdio: 'inherit',
 				shell : true ,
+				env: process.env
 			}
 		)
 
