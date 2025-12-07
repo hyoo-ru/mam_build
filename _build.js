@@ -3,6 +3,7 @@ const tc = require('@actions/tool-cache')
 const path = require( 'node:path' )
 const child = require( 'node:child_process' )
 const fs = require( 'node:fs' )
+const os = require( 'node:os' )
 
 //////////////////////////////////////////
 
