@@ -21,6 +21,7 @@
   "homepage": "https://github.com/hyoo-ru/mam_build#readme",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.1"
+    "@actions/github": "^6.0.1",
+    "@actions/tool-cache": "^2.0.2"
   }
 }

@@ -1,14 +1,30 @@
 const core = require( '@actions/core' )
-const path = require( 'path' )
-const child = require( 'child_process' )
-const fs = require( 'fs' )
+const tc = require('@actions/tool-cache')
+const path = require( 'node:path' )
+const child = require( 'node:child_process' )
+const fs = require( 'node:fs' )
+const os = require('node:os')
 
 //////////////////////////////////////////
 
-console.log( 'args', process.argv )
-console.log( 'node' , process.version )
+const version = core.getInput('node-version') || '24'
+let arch = core.getInput('architecture') || os.arch()
 
-core.addPath(path.basename(process.argv[0]))
+if (arch === 'arm') arch = 'armv7l'
+
+console.log( 'args', process.argv )
+console.log( 'node version' , version )
+console.log( 'arch' , arch )
+
+const node_path = tc.find(
+      'node',
+      version,
+      arch
+)
+
+console.log('node_path', node_path)
+
+core.addPath(node_path)
 
 exec('.', 'which', 'node')
 exec('.', 'which', 'npm')
