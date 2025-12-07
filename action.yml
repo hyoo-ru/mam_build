@@ -16,7 +16,7 @@ inputs:
     description: 'Paths to dependent module and namespace repositories'
     required: false
 runs:
-  using: 'node12'
+  using: 'node24'
   main: '_build.js'
 branding:
   icon: 'anchor'
