@@ -2,12 +2,14 @@ const core = require( '@actions/core' )
 const path = require( 'path' )
 const child = require( 'child_process' )
 const fs = require( 'fs' )
+const path = require('path')
 
 //////////////////////////////////////////
 
 console.log( 'args', process.argv )
-
 console.log( 'node' , process.version )
+
+core.addPath(path.basename(process.argv[0]))
 
 exec('.', 'which', 'node')
 exec('.', 'which', 'npm')
