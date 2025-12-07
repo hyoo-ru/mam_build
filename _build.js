@@ -16,11 +16,13 @@ console.log( 'args', process.argv )
 console.log( 'node version' , version )
 console.log( 'arch' , arch )
 
-const node_path = tc.find(
+let node_path = tc.find(
       'node',
       version,
       arch
 )
+
+node_path = path.join(node_path, 'bin')
 
 console.log('node_path', node_path)
 
@@ -144,7 +146,6 @@ function exec( dir , command , ...args ) {
 				cwd : path.resolve( dir ) ,
 				stdio: 'inherit',
 				shell : true ,
-				env: process.env
 			}
 		)
 
