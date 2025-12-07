@@ -5,7 +5,13 @@ const fs = require( 'fs' )
 
 //////////////////////////////////////////
 
+console.log( 'args', process.argv )
+
 console.log( 'node' , process.version )
+
+exec('.', 'which', 'node')
+exec('.', 'which', 'npm')
+
 console.log( 'env' , process.env )
 
 const event = JSON.parse( fs.readFileSync( process.env.GITHUB_EVENT_PATH ) )
