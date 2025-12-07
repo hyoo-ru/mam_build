@@ -3,33 +3,25 @@ const tc = require('@actions/tool-cache')
 const path = require( 'node:path' )
 const child = require( 'node:child_process' )
 const fs = require( 'node:fs' )
-const os = require('node:os')
 
 //////////////////////////////////////////
 
-const version = core.getInput('node-version') || '24'
-let arch = core.getInput('architecture') || os.arch()
+const version = core.getInput('node-version') || process.version
 
+let arch = core.getInput('architecture') || os.arch()
 if (arch === 'arm') arch = 'armv7l'
 
 console.log( 'args', process.argv )
 console.log( 'node version' , version )
 console.log( 'arch' , arch )
 
-let node_path = tc.find(
-      'node',
-      version,
-      arch
-)
+let node_path = tc.find('node', version, arch) || path.dirname(path.dirname(process.argv[0]))
 
 node_path = path.join(node_path, 'bin')
 
 console.log('node_path', node_path)
 
 core.addPath(node_path)
-
-exec('.', 'which', 'node')
-exec('.', 'which', 'npm')
 
 console.log( 'env' , process.env )
 
