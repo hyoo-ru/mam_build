@@ -20,6 +20,18 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project.
 
 **Optional** Paths to dependent module and namespace repositories. They will be loaded before build.
 
+### `ref`
+
+**Optional** Git ref (branch/tag/sha) to check out from the package repo. Resolved in this order:
+
+1. explicit `ref:` input
+2. `event.ref` (push events)
+3. `event.pull_request.head.ref` (pull_request events)
+4. `GITHUB_REF_NAME` (covers `schedule` and `workflow_dispatch` — defaults to the repo's default branch)
+5. literal `'master'` (final fallback)
+
+This means repositories whose default branch is `main` (or anything other than `master`) work out of the box on `schedule` and `workflow_dispatch` triggers without setting this input.
+
 ## Example usage
 
 ```
