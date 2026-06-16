@@ -20,10 +20,6 @@ GitHub Action to build [MAM](https://github.com/eigenmethod/mam) based project.
 
 **Optional** Paths to dependent module and namespace repositories. They will be loaded before build.
 
-### `ref`
-
-**Optional** Git ref (branch/tag/sha) of the package repo to check out. Auto-detected from the triggering event; explicit override when needed.
-
 ## Example usage
 
 ```

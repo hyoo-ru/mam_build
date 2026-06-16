@@ -48,8 +48,7 @@ console.log('meta', JSON.stringify(meta))
 const repository = event.pull_request && event.pull_request.head.repo.full_name || process.env.GITHUB_REPOSITORY
 console.log( 'repository' , repository )
 
-const ref = core.getInput( 'ref', { required: false } )
-	|| event.ref && event.ref.replace( 'refs/heads/', '' )
+const ref = event.ref && event.ref.replace( 'refs/heads/', '' )
 	|| event.pull_request && event.pull_request.head.ref
 	|| process.env.GITHUB_REF_NAME
 	|| 'master'
