@@ -15,6 +15,9 @@ inputs:
   meta:
     description: 'Paths to dependent module and namespace repositories'
     required: false
+  ref:
+    description: 'Git ref (branch/tag/sha) to check out from the package repo. By default uses the triggering event ref, falling back to GITHUB_REF_NAME and finally "master".'
+    required: false
 runs:
   using: 'node24'
   main: '_build.js'
