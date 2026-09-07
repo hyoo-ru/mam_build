@@ -54,12 +54,12 @@ const ref = event.pull_request && event.pull_request.head.ref
 console.log( 'ref' , ref )
 
 // clone mam
-	exec( root , 'git' , 'clone' , '--deepen=1', '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
+	exec( root , 'git' , 'clone' , '--depth=1', '--branch' , 'master' , 'https://github.com/hyoo-ru/mam.git' , '.' )
 
 // clone meta modules
 	for ( const [package, repo] of meta ) {
 		const pathname = new URL(repo).pathname
-		exec( root , 'git' , 'clone' , '--deepen=1', `https://${token}:x-oauth-basic@github.com${pathname}` , package )
+		exec( root , 'git' , 'clone' , '--depth=1', `https://${token}:x-oauth-basic@github.com${pathname}` , package )
 	}
 
 // clone package
